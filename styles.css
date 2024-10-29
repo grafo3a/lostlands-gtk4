@@ -1,0 +1,70 @@
+/* WIDGETS
+------------------------*/
+label {
+    background-color: lightsalmon;
+}
+
+#DICTIONARY01 {
+    background-color: orange;
+    margin: 20px;
+    border: 1px solid grey;
+}
+
+#DICTIONARY02 {
+    background-color: orange;
+    margin: 20px;
+    border: 1px solid grey;
+}
+
+#LOSTLAND-LABEL {
+    margin: 40px;
+    border: 1px solid blue;
+    font-size: 40px;
+    color: blue;
+}
+
+/*
+#GAME-MESSAGE-LABEL {
+    color: green;
+}
+*/
+
+#CONTENEUR-INPUT {
+    background-color: white;
+    margin: 10px;
+    border: 1px solid orange;
+}
+
+#INPUT01 {
+    color: green;
+}
+
+button {
+    background-color: orange;    /* affiche la bordure seulement */
+    color: green;
+    /* border: 1px solid green; // ne fonctionne pas */
+
+    margin: 10px;
+}
+
+window {
+    background-color: bisque;
+}
+
+/* CLASSES
+------------------------*/
+.bouton-actif {
+    color: blue;
+}
+
+.bouton-inactif {
+    color: lightgrey;
+}
+
+.texte-rouge {
+    color: red;
+}
+
+.texte-vert {
+    color: green;
+}

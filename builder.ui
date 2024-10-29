@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object id="window" class="GtkWindow">
+
+    <property name="title">App Title</property>
+    
+    <child>
+      <object id="grid" class="GtkGrid">
+
+        <!--==== Ligne 01: Labels Dictionary ====-->
+        <child>
+          <object id="dictionary01" class="GtkLabel">
+            <property name="label">Dictionary:</property>
+            <property name="name">DICTIONARY01</property>
+
+            <layout>
+              <property name="column">0</property>
+              <property name="row">0</property>
+              <property name="column-span">2</property>
+            </layout>
+          </object>
+        </child>
+
+        <child>
+          <object id="dictionary02" class="GtkLabel">
+            <property name="label">[Dictionary]</property>
+            <property name="name">DICTIONARY02</property>
+
+            <layout>
+              <property name="column">3</property>
+              <property name="row">0</property>
+              <property name="column-span">2</property>
+            </layout>
+
+          </object>
+        </child>
+
+        <!--==== LIGNE 02: Labels Results ====-->
+        <child>
+          <object id="results" class="GtkLabel">
+            <property name="label">RESULTS</property>
+            <property name="name">RESULTS</property>
+
+            <layout>
+              <property name="column">0</property>
+              <property name="row">1</property>
+              <property name="column-span">2</property>
+            </layout>
+          </object>
+        </child>
+
+        <!--==== LIGNE 03: Labels Round ====-->
+        <child>
+          <object id="round-01" class="GtkLabel">
+            <property name="label">Round</property>
+            <property name="name">ROUND-01</property>
+
+            <layout>
+              <property name="column">0</property>
+              <property name="row">2</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <child>
+          <object id="round-02" class="GtkLabel">
+            <property name="label">0</property>
+            <property name="name">ROUND-02</property>
+
+            <layout>
+              <property name="column">1</property>
+              <property name="row">2</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <!--==== LIGNE 04: Labels Points ====-->
+        <child>
+          <object id="points-01" class="GtkLabel">
+            <property name="label">Points</property>
+            <property name="name">ROUND-01</property>
+
+            <layout>
+              <property name="column">0</property>
+              <property name="row">3</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <child>
+          <object id="points-02" class="GtkLabel">
+            <property name="label">0</property>
+            <property name="name">ROUND-02</property>
+
+            <layout>
+              <property name="column">1</property>
+              <property name="row">3</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <!--==== LIGNE 04: Labels Success ====-->
+        <child>
+          <object id="success-01" class="GtkLabel">
+            <property name="label">Success</property>
+            <property name="name">ROUND-01</property>
+
+            <layout>
+              <property name="column">0</property>
+              <property name="row">4</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <child>
+          <object id="success-02" class="GtkLabel">
+            <property name="label">0 %</property>
+            <property name="name">ROUND-02</property>
+
+            <layout>
+              <property name="column">1</property>
+              <property name="row">4</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <!--==== LIGNE 05: Labels Game ====-->
+        <child>
+          <object id="game-01" class="GtkLabel">
+            <property name="label">Game</property>
+            <property name="name">GAME-01</property>
+
+            <layout>
+              <property name="column">0</property>
+              <property name="row">5</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <child>
+          <object id="game-02" class="GtkLabel">
+            <property name="label">0 / 1</property>
+            <property name="name">GAME-02</property>
+
+            <layout>
+              <property name="column">1</property>
+              <property name="row">5</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
+        <!--==== LIGNE 06: Label Lostland ====-->
+        <child>
+          <object id="lostLandLabel" class="GtkLabel">
+            <property name="label">**** LostLand ****</property>
+            <property name="name">LOSTLAND-LABEL</property>
+          
+            <layout>
+              <property name="column">2</property>
+              <property name="row">6</property>
+              <property name="column-span">6</property>
+            </layout>
+          </object>
+        </child>
+        
+        <!--==== LIGNE 07: Label Lostland ====-->
+        <child>
+          <object id="messageLabel" class="GtkLabel">
+            <property name="label">* is present</property>
+            <property name="name">GAME-MESSAGE-LABEL</property>
+
+            <layout>
+              <property name="column">2</property>
+              <property name="row">7</property>
+              <property name="column-span">6</property>
+            </layout>
+          </object>
+        </child>
+
+        <!--==== LIGNE 08 Input & boutons ====-->
+        <!--==== INPUT ====-->
+        <child>
+          <object  id="conteneur" class="GtkBox">
+            <property name="name">CONTENEUR-INPUT</property>
+
+            <child>
+              <object id="entry01" class="GtkEntry">
+                <property name="name">INPUT01</property>
+              </object>
+            </child>
+
+            <layout>
+              <property name="column">0</property>
+              <property name="row">8</property>
+              <property name="column-span">2</property>
+            </layout>
+          </object>
+        </child>
+
+        <!--==== BOUTON PLAY ====-->
+        <child>
+          <object id="bouton02" class="GtkButton">
+            <property name="label">Button 02</property>
+            <layout>
+              <property name="column">2</property>
+              <property name="row">8</property>
+              <property name="column-span">2</property>
+            </layout>
+          </object>
+        </child>
+
+         <!--==== BOUTON CONTINUER ====-->
+        <child>
+          <object id="boutonContinuer" class="GtkButton">
+            <property name="label">Continue</property>
+            <layout>
+              <property name="column">4</property>
+              <property name="row">8</property>
+              <property name="column-span">2</property>
+            </layout>
+          </object>
+        </child>
+
+        <child>
+          <object id="quit" class="GtkButton">
+            <property name="label">Quit</property>
+            <layout>
+              <property name="column">0</property>
+              <property name="row">11</property>
+              <property name="column-span">2</property>
+            </layout>
+          </object>
+        </child>
+        
+      </object>
+    </child>
+  </object>
+</interface>
