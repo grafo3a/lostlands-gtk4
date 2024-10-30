@@ -1,19 +1,18 @@
 /* WIDGETS
 ------------------------*/
+/*
 label {
     background-color: lightsalmon;
 }
+*/
 
 #DICTIONARY01 {
-    background-color: orange;
     margin: 20px;
-    border: 1px solid grey;
+    text-align: right;
 }
 
 #DICTIONARY02 {
-    background-color: orange;
     margin: 20px;
-    border: 1px solid grey;
 }
 
 #LOSTLAND-LABEL {
@@ -43,7 +42,6 @@ button {
     background-color: orange;    /* affiche la bordure seulement */
     color: green;
     /* border: 1px solid green; // ne fonctionne pas */
-
     margin: 10px;
 }
 

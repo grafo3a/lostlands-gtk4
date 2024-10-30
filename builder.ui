@@ -23,7 +23,7 @@
 
         <child>
           <object id="dictionary02" class="GtkLabel">
-            <property name="label">[Dictionary]</property>
+            <property name="label">[World Countries]</property>
             <property name="name">DICTIONARY02</property>
 
             <layout>
@@ -106,7 +106,7 @@
         <!--==== LIGNE 04: Labels Success ====-->
         <child>
           <object id="success-01" class="GtkLabel">
-            <property name="label">Success</property>
+            <property name="label">Success [%]</property>
             <property name="name">ROUND-01</property>
 
             <layout>
@@ -119,7 +119,7 @@
 
         <child>
           <object id="success-02" class="GtkLabel">
-            <property name="label">0 %</property>
+            <property name="label">0</property>
             <property name="name">ROUND-02</property>
 
             <layout>
@@ -174,7 +174,7 @@
         <!--==== LIGNE 07: Label Lostland ====-->
         <child>
           <object id="messageLabel" class="GtkLabel">
-            <property name="label">* is present</property>
+            <property name="label">In standby</property>
             <property name="name">GAME-MESSAGE-LABEL</property>
 
             <layout>
@@ -208,7 +208,7 @@
         <!--==== BOUTON PLAY ====-->
         <child>
           <object id="bouton02" class="GtkButton">
-            <property name="label">Button 02</property>
+            <property name="label">Play</property>
             <layout>
               <property name="column">2</property>
               <property name="row">8</property>
