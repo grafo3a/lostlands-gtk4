@@ -176,7 +176,7 @@
           <object id="messageLabel" class="GtkLabel">
             <property name="label">In standby</property>
             <property name="name">GAME-MESSAGE-LABEL</property>
-
+            
             <layout>
               <property name="column">2</property>
               <property name="row">7</property>
