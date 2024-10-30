@@ -1,5 +1,5 @@
 
-PROG = <app-name>
+PROG = lostlands-gtk4
 
 CC = gcc
 CFLAGS = `pkg-config --cflags gtk4`
