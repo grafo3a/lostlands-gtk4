@@ -2,7 +2,7 @@
 <interface>
   <object id="window" class="GtkWindow">
 
-    <property name="title">App Title</property>
+    <property name="title">LostLands-GTK4</property>
     
     <child>
       <object id="grid" class="GtkGrid">
