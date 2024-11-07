@@ -189,6 +189,7 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 
 			if(toupper(p_motSecret[i]) == toupper(lettreTapee)) {
 				// Si la lettre est presente dans le mot, on remplace * par la lettre
+
 				p_motMasqueh[i] = toupper(lettreTapee);
 				occurrence++;
 			}
@@ -223,6 +224,11 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 
 		afficherNombrePoints(pointsNumber);
 		afficherNombreSuccess(successNumber);
+
+		char messageSuccess[] = "";
+		sprintf(messageSuccess, "%s\n==== BRAVO! the word is %s ====", messagePresence, p_motSecret);
+		
+		gtk_label_set_text(GTK_LABEL(p_messageLabel), messageSuccess);
 	}
 }
 
@@ -283,13 +289,15 @@ void enablePlayButton(){
 	gtk_widget_add_css_class(GTK_WIDGET(p_playButton), "bouton-actif");
 	gtk_widget_set_sensitive(GTK_WIDGET(p_playButton), TRUE);
 
+	/*
 	int diff = 1;
 	diff = strcmp(p_motSecret, p_motMasqueh);
-	
+
 	if (diff == 0){
 		printf("\n---- BRAVO! LE MOT EST: %s\n", p_motMasqueh);
 		initialiserJeu();
 	}
+	*/
 }
 
 void enableContinueButton(){
