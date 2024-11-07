@@ -6,6 +6,10 @@
 
 // Les prototypes de fonction
 void setLostLandLabel(GObject *p_label);
+void setRoundNumberLabel(GObject *p_label);
+void setPointsNumberLabel(GObject *p_label);
+void setSuccessNumberLabel(GObject *p_label);
+void setGameNumberLabel(GObject *p_label);
 void setMessageLabel(GObject* p_messageLabel);
 void setInputBox(GObject *p_editBox);
 void setPlayButton(GObject* p_playButton);
@@ -15,8 +19,11 @@ void jouer();
 char getLettreTapee();
 char* masquerMot(char* p_masque, int tailleSecret);
 void afficherMotMasqueh(char* p_masque);
+void afficherNumeroRound(int roundNumber);
+void afficherNombrePoints(int pointsNumber);
+void afficherNombreSuccess(int successNumber);
+void afficherNumeroGame(int gameNumber);
 void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int tailleSecret);
-
 void enablePlayButton();
 void disablePlayButton();
 void enableContinueButton();
@@ -28,6 +35,10 @@ void continuer();
 
 // Les variables
 GObject* p_lostLandLabel;
+GObject* p_roundNumberLabel;
+GObject* p_pointsNumberLabel;
+GObject* p_successNumberLabel;
+GObject* p_gameNumberLabel;
 GObject* p_messageLabel;
 GObject* p_inputBox;
 GObject* p_playButton;
@@ -35,107 +46,91 @@ GObject* p_continueButton;
 char* p_motMasqueh;
 char* p_motSecret;
 char* p_masque;
-/*
-int roundNumber;
-int maxGamesNumber;
-int success;
-int leftGamesNumber;
-*/
+int roundsNumber = 0;
+int pointsNumber = 0;
+int successNumber = 0;
+int gameNumber = 0;
+int maxGameNumber = 0;
 
-void initialiserJeu(){
 
+void initialiserJeu() {
+	/* Quand la fenetre de l'application s'ouvre */
+	
+	roundsNumber++;
+	afficherNumeroRound(roundsNumber);
+	
 	p_motSecret = genererMotSecret(p_motSecret);
-
-	//printf("-> Mot secret genereh 01: %s\n", p_motSecret);
-
 	int taille = strlen(p_motSecret);
 	char* p_chaineTemp = malloc(taille);
-
-	//printf("-> Adresse chaineTemp: %p\n", p_chaineTemp);
-
 	p_motSecret = convertirEnMajuscules(p_motSecret, p_chaineTemp);
-
-	//printf("-> Mot secret genereh 02: %s\n", p_motSecret);
-
-	int tailleSecret = strlen(p_motSecret);
+	int tailleMotSecret = strlen(p_motSecret);
 	
 	// On conserve le mot en majuscules
-	char p_secret[tailleSecret];
+	char p_secret[tailleMotSecret];
 	
 	int i = 0;
-	while(i <= tailleSecret){
+	while(i <= tailleMotSecret){
 		
-		if(i < tailleSecret){
+		if(i < tailleMotSecret){
 			p_secret[i] = toupper(p_motSecret[i]);
 			
 		} else {
-			p_secret[tailleSecret] = '\0';
+			p_secret[tailleMotSecret] = '\0';
 		}
-		
+
 		i++;
 	}
 
-	//printf("-> Nouveau mot secret: %s\n", p_secret);
-	//printf("\n-> Pointeur sur adresse 00: %p\n", p_motMasqueh );
+	p_masque = (char*)malloc(tailleMotSecret * sizeof(char));
+	p_motMasqueh = masquerMot(p_masque, tailleMotSecret);
 
-	p_masque = (char*)malloc(tailleSecret * sizeof(char)); // We allocate memory
+	// On calcule maxGameNumber (nombre de fois jouables)
+	if (tailleMotSecret < 5) {
+		maxGameNumber = tailleMotSecret * 4;
+	} else if (tailleMotSecret >= 6 && tailleMotSecret < 10) {
+		maxGameNumber = tailleMotSecret * 2;
+	} else {
+		maxGameNumber = tailleMotSecret;
+	}
 
-	//char p_masque[taille_secret];
-	//printf("\n-> Pointeur sur adresse 01: %p\n", p_masque );
-
-	p_motMasqueh = masquerMot(p_masque, tailleSecret);
-
-	//printf("\n-> Pointeur sur adresse 02: %p\n", p_motMasqueh );
-
-	//setMotMasqueh(p_motMasqueh);
-	//p_motMasqueh = p_masque;
-
-	//printf("-> Nouveau mot masqueh: %s\n", p_motMasqueh);
-
+	afficherNumeroGame(0);
+	
 	afficherMotMasqueh(p_motMasqueh);
 	enablePlayButton();
 	disableContinueButton();
-
-	//free(p_masque); // On doit liberer la memoire
-	//return 0;
 }
 
 void jouer(){
+	/* Quand le bouton play est cliqueh */
 	
-	//while(diff != 0){
-		
-		char lettreTapee = getLettreTapee();
+	char lettreTapee = getLettreTapee();
+	int tailleSecret = strlen(p_motSecret);
+	
+	gameNumber++;
 
-		int tailleSecret = strlen(p_motSecret);
+	if ( gameNumber > maxGameNumber) {
+		gameNumber = 1;
+	}
 
-		jouerLettre(lettreTapee, p_motSecret, p_motMasqueh, tailleSecret);
-		
-		//printf("\nLettre tapee: %c\n", lettreTapee);
-		//printf("Mot secret actuel: %s\n", p_motSecret);
-
-		//setMotMasqueh(p_motMasqueh);
-
-
-		afficherMotMasqueh(p_motMasqueh);
-
-		disablePlayButton();
-		enableContinueButton();
-
-		
-	//free(p_motMasqueh);
+	afficherNumeroGame(gameNumber);
+	
+	jouerLettre(lettreTapee, p_motSecret, p_motMasqueh, tailleSecret);
+	afficherMotMasqueh(p_motMasqueh);
+	disablePlayButton();
+	enableContinueButton();
 }
 
-char* masquerMot(char* p_masque, int tailleSecret){
+char* masquerMot(char* p_masque, int tailleMotSecret){
 	
 	int i = 0;
-	
-	while(i <= tailleSecret){
 
-		if(i < tailleSecret){
+	while(i <= tailleMotSecret){
+
+		if(i < tailleMotSecret){
 			p_masque[i] = '*';
 			
 		} else {
-			p_masque[tailleSecret] = '\0';
+			p_masque[tailleMotSecret] = '\0';
 		}
 		
 		i++;
@@ -145,34 +140,61 @@ char* masquerMot(char* p_masque, int tailleSecret){
 }
 
 void afficherMotMasqueh(char* p_masque) {
-  
-  //printf("\nMot masqueh: %s\n", p_masque);
-
   gtk_label_set_text(GTK_LABEL(p_lostLandLabel), p_masque);
 }
 
-void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int tailleSecret) {
+void afficherNumeroRound(int roundNumber) {
+
+	// On convertit le numero ressu en chaine de caracteres
+	char chaine[20];
+    sprintf(chaine, "%d", roundNumber);
+	gtk_label_set_text(GTK_LABEL(p_roundNumberLabel), chaine);
+}
+
+void afficherNombrePoints(int pointsNumber) {
+
+	// On convertit le numero ressu en chaine de caracteres
+	char chaine[20];
+    sprintf(chaine, "%d", pointsNumber);
+	gtk_label_set_text(GTK_LABEL(p_pointsNumberLabel), chaine);
+}
+
+void afficherNombreSuccess(int successNumber) {
+
+	// On convertit le numero ressu en chaine de caracteres
+	char chaine[20];
+    sprintf(chaine, "%d", successNumber);
+	gtk_label_set_text(GTK_LABEL(p_successNumberLabel), chaine);
+}
+
+void afficherNumeroGame(int gameNumber) {
+
+	// On convertit le numero ressu en chaine de caracteres
+	char chaine[20];
+    sprintf(chaine, "%d / %d", gameNumber, maxGameNumber);
+	gtk_label_set_text(GTK_LABEL(p_gameNumberLabel), chaine);
+}
+
+void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int tailleMotSecret) {
 
 	int occurrence = 0;
 	int i = 0;
-
 	char messagePresence[] = "* is present";
 	char messageAbsence[] = "* is absent";
 
-
-	while(i <= tailleSecret) {
+	while(i <= tailleMotSecret) {
 		// Iteration sur chaque lettre
 		
-		if(i < tailleSecret) {
+		if(i < tailleMotSecret) {
 
 			if(toupper(p_motSecret[i]) == toupper(lettreTapee)) {
-				// Si la lettre est presente dans le mot
+				// Si la lettre est presente dans le mot, on remplace * par la lettre
 				p_motMasqueh[i] = toupper(lettreTapee);
 				occurrence++;
 			}
 
 		} else {
-			p_motMasqueh[tailleSecret] = '\0';
+			p_motMasqueh[tailleMotSecret] = '\0';
 		}
 
 		i++;
@@ -182,8 +204,6 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 		// Si la lettre est presente dans le mot
 		messagePresence[0] = lettreTapee;
 		gtk_label_set_text(GTK_LABEL(p_messageLabel), messagePresence);
-
-
 		gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
 		gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
 
@@ -191,12 +211,19 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 		// Si la lettre est absente dans le mot
 		messageAbsence[0] = lettreTapee;
 		gtk_label_set_text(GTK_LABEL(p_messageLabel), messageAbsence);
-
-
 		gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
 		gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
 	}
-	
+
+	if ( strcmp(p_motSecret, p_motMasqueh) == 0) {
+		/* La fin d'un round en cas de succes. */
+
+		pointsNumber++;
+		successNumber = (pointsNumber * 100) / roundsNumber;
+
+		afficherNombrePoints(pointsNumber);
+		afficherNombreSuccess(successNumber);
+	}
 }
 
 char getLettreTapee(){
@@ -216,6 +243,22 @@ void clearLettreTapee(){
 
 void setLostLandLabel(GObject *p_label){
   p_lostLandLabel = p_label;
+}
+
+void setRoundNumberLabel(GObject *p_label){
+  p_roundNumberLabel = p_label;
+}
+
+void setPointsNumberLabel(GObject *p_label){
+  p_pointsNumberLabel = p_label;
+}
+
+void setSuccessNumberLabel(GObject *p_label){
+  p_successNumberLabel = p_label;
+}
+
+void setGameNumberLabel(GObject *p_label){
+  p_gameNumberLabel = p_label;
 }
 
 void setMessageLabel(GObject* p_mLabel){
@@ -242,8 +285,6 @@ void enablePlayButton(){
 
 	int diff = 1;
 	diff = strcmp(p_motSecret, p_motMasqueh);
-	
-	//printf("\nDiff p_motSecret - p_mot_masqueh: %d\n", diff);
 	
 	if (diff == 0){
 		printf("\n---- BRAVO! LE MOT EST: %s\n", p_motMasqueh);

@@ -12,12 +12,6 @@ char* genererMotSecret(char* p_motSecret){
 	
 	switch(nombreAleatoire) {
 		
-		//case 1: p_motSecret = "Matthieu"; break;
-		//case 2: p_motSecret = "Marc"; break;
-		//case 3: p_motSecret = "Luc"; break;
-		//case 4: p_motSecret = "Jean"; break;
-		//default: p_motSecret = "None";
-		
 		case 1: p_motSecret = "Afghanistan"; break;
         case 2: p_motSecret = "Albania"; break;
         case 3: p_motSecret = "Algeria"; break;
