@@ -3,7 +3,7 @@
 #include "utility_functions.h"
 
 
-char* genererMotSecret(char* p_motSecret){
+char* genererMotSecret(char* p_motSecret) {
 	
 	int nombreMaxPays = 196;
 	int nombreAleatoire = getNombreAleatoireMin1Max(nombreMaxPays);

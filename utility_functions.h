@@ -8,7 +8,8 @@
 
 // Les prototypes de fonction
 int getNombreAleatoireMin1Max(int maximum);
-char* convertirEnMajuscules(char* chaineCaracteres, char* dynamicString);
+char* convertirEnMajuscules(char* chaineCaracteres);
+
 
 int getNombreAleatoireMin1Max(int maximum) {
 	/* Cette fonction genere efficacement un nombre aleatoire
@@ -21,7 +22,7 @@ int getNombreAleatoireMin1Max(int maximum) {
 	
 	time_t t;
 	
-	/* We initialize the random number generator */
+	/* On initialise le generateur de nombres aleatoires, ensuite on genere un nombre */
 	srand((unsigned) time(&t));
 	maximum++;
 	int randomInt = 0;
@@ -33,38 +34,22 @@ int getNombreAleatoireMin1Max(int maximum) {
 	return randomInt;
 }
 
-char* convertirEnMajuscules(char* p_chaineCaracteres, char* p_chaineTemp){
+char* convertirEnMajuscules(char* p_chaineCaracteres) {
 
 	int taille = strlen(p_chaineCaracteres);
-
-	printf("Taille test: %d\n", taille);
-	
-	//char *dynamicString = malloc(taille);
-	strcpy(p_chaineTemp, p_chaineCaracteres);
-
+	char* p_chaineTemp = malloc(taille);
 	int i = 0;
-	
-	while(i <= taille){
-		
-		if(i < taille){
 
-			printf("-- element %d: %c\n", i, p_chaineTemp[i]);
-			
-			p_chaineTemp[i] = toupper(p_chaineCaracteres[i]);
-			
-		} else {
-			p_chaineTemp[taille] = '\0';
-		}
-		
+	while(i <= taille) {
+
+		p_chaineTemp[i] = toupper(p_chaineCaracteres[i]);
 		i++;
 	}
 
-	printf("-> Mot secret majuscule 01: %s ---- %p\n", p_chaineTemp, p_chaineTemp);
+	strcpy(p_chaineCaracteres, p_chaineTemp);
 
-	p_chaineCaracteres = p_chaineTemp;
-
-	printf("-> Mot secret 02: %s ---- %p\n", p_chaineCaracteres, p_chaineCaracteres);
-
-	// **** Si necessaire, liberer la memoire ici!
+	// On libere la memoire allouee par malloc.
+	free(p_chaineTemp);
+	
 	return p_chaineCaracteres;
 }

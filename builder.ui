@@ -174,7 +174,7 @@
         <!--==== LIGNE 07: Label Lostland ====-->
         <child>
           <object id="messageLabel" class="GtkLabel">
-            <property name="label">In standby</property>
+            <property name="label">NEW ROUND. GOOD LUCK!</property>
             <property name="name">GAME-MESSAGE-LABEL</property>
             
             <layout>
