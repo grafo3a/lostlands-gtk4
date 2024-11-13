@@ -31,7 +31,6 @@
               <property name="row">0</property>
               <property name="column-span">2</property>
             </layout>
-
           </object>
         </child>
 
@@ -40,7 +39,7 @@
           <object id="results" class="GtkLabel">
             <property name="label">RESULTS</property>
             <property name="name">RESULTS</property>
-
+            
             <layout>
               <property name="column">0</property>
               <property name="row">1</property>
@@ -103,7 +102,7 @@
           </object>
         </child>
 
-        <!--==== LIGNE 04: Labels Success ====-->
+        <!--==== LIGNE 05: Labels Success ====-->
         <child>
           <object id="success-01" class="GtkLabel">
             <property name="label">Success [%]</property>
@@ -130,7 +129,7 @@
           </object>
         </child>
 
-        <!--==== LIGNE 05: Labels Game ====-->
+        <!--==== LIGNE 06: Labels Game ====-->
         <child>
           <object id="game-01" class="GtkLabel">
             <property name="label">Game</property>
@@ -157,7 +156,7 @@
           </object>
         </child>
 
-        <!--==== LIGNE 06: Label Lostland ====-->
+        <!--==== LIGNE 07: Label Lostland ====-->
         <child>
           <object id="lostLandLabel" class="GtkLabel">
             <property name="label">**** LostLand ****</property>
@@ -171,7 +170,7 @@
           </object>
         </child>
         
-        <!--==== LIGNE 07: Label Lostland ====-->
+        <!--==== LIGNE 08: Label Game message ====-->
         <child>
           <object id="messageLabel" class="GtkLabel">
             <property name="label">NEW ROUND. GOOD LUCK!</property>
@@ -185,7 +184,7 @@
           </object>
         </child>
 
-        <!--==== LIGNE 08 Input & boutons ====-->
+        <!--==== LIGNE 09: Input & boutons ====-->
         <!--==== INPUT ====-->
         <child>
           <object  id="conteneur" class="GtkBox">
@@ -229,17 +228,31 @@
           </object>
         </child>
 
+        <!--==== LIGNE 10: Boutons Previous & Next ====-->
+        <!--==== BOUTON PREVIOUS ====-->
         <child>
-          <object id="quit" class="GtkButton">
-            <property name="label">Quit</property>
+          <object id="boutonPrevious" class="GtkButton">
+            <property name="label"> - </property>
             <layout>
               <property name="column">0</property>
               <property name="row">11</property>
-              <property name="column-span">2</property>
+              <property name="column-span">1</property>
             </layout>
           </object>
         </child>
         
+        <!--==== BOUTON NEXT ====-->
+        <child>
+          <object id="boutonNext" class="GtkButton">
+            <property name="label"> + </property>
+            <layout>
+              <property name="column">1</property>
+              <property name="row">11</property>
+              <property name="column-span">1</property>
+            </layout>
+          </object>
+        </child>
+
       </object>
     </child>
   </object>

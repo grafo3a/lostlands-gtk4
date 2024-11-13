@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 #include "countries_dictionary.h"
+//#include "alphabet.h"
+
 
 // Les prototypes de fonction
 void setLostLandLabel(GObject *p_label);
@@ -43,6 +45,8 @@ GObject* p_messageLabel;
 GObject* p_inputBox;
 GObject* p_playButton;
 GObject* p_continueButton;
+GObject* p_previousButton;
+GObject* p_nextButton;
 char* p_masque;
 char* p_motMasqueh;
 char* p_motSecret;
@@ -314,6 +318,24 @@ void setPlayButton(GObject* p_pButton) {
 void setContinueButton(GObject* p_cButton) {
 	p_continueButton = p_cButton;
 }
+
+void setPreviousButton(GObject* p_prevButton){
+	p_previousButton = p_prevButton;
+}
+
+void setNextButton(GObject* p_nextButton){
+	p_nextButton = p_nextButton;
+}
+
+
+//===========================================
+void setPreviousLetter(){
+}
+
+void setNextLetter(){
+}
+//=============================================
+
 
 void enablePlayButton() {
 

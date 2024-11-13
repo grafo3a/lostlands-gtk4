@@ -37,10 +37,18 @@ static void activate (GtkApplication *app, gpointer user_data) {
   GObject *p_continueButton = gtk_builder_get_object (builder, "boutonContinuer");
   setContinueButton(p_continueButton);
 
+  GObject *p_previousButton = gtk_builder_get_object (builder, "boutonPrevious");
+  setPreviousButton(p_previousButton);
+
+  GObject *p_nextButton = gtk_builder_get_object (builder, "boutonNext");
+  setNextButton(p_nextButton);
+
   /* On connecte certains boutons à certaines methodes */
   g_signal_connect_swapped (p_playButton, "clicked", G_CALLBACK (jouer), GTK_ENTRY(p_inputBox));
   g_signal_connect_swapped (p_continueButton, "clicked", G_CALLBACK (continuer), GTK_ENTRY(p_inputBox));
-  
+  g_signal_connect_swapped (p_previousButton, "clicked", G_CALLBACK (setPreviousLetter), GTK_ENTRY(p_inputBox));
+  g_signal_connect_swapped (p_nextButton, "clicked", G_CALLBACK (setNextLetter), GTK_ENTRY(p_inputBox));
+    
   /* On charge le fichier CSS */
   const char cssPath[] = "styles.css";
   GtkCssProvider * cssProvider = gtk_css_provider_new();
