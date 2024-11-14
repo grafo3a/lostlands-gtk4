@@ -110,9 +110,8 @@ void jouer() {
 	/* Quand le bouton play est cliqueh */
 
 	char lettreTapee = getLettreTapee();
-	//bool isLettreValide = isLettreTapeeValid(lettreTapee);
-	bool isLettreValide = true;
-	
+	bool isLettreValide = isLettreTapeeValid(lettreTapee);
+
 	if (isLettreValide) {
 		
 		int tailleSecret = strlen(p_motSecret);

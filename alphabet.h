@@ -88,4 +88,43 @@ char getNextLetter(char lettre) {
     return nextLetter;
 }
 
+bool isLettreTapeeValid(char lettre) {
+    
+	bool isLettreValid = false;
+	lettre = toupper(lettre);
+
+	if (lettre == 'A' ||
+		lettre == 'B' ||
+		lettre == 'C' ||
+		lettre == 'D' ||
+		lettre == 'E' ||
+		lettre == 'F' ||
+		lettre == 'G' ||
+		lettre == 'H' ||
+		lettre == 'I' ||
+		lettre == 'J' ||
+		lettre == 'K' ||
+		lettre == 'L' ||
+		lettre == 'M' ||
+		lettre == 'N' ||
+		lettre == 'O' ||
+		lettre == 'P' ||
+		lettre == 'Q' ||
+		lettre == 'R' ||
+		lettre == 'S' ||
+		lettre == 'T' ||
+		lettre == 'U' ||
+		lettre == 'V' ||
+		lettre == 'W' ||
+		lettre == 'X' ||
+		lettre == 'Y' ||
+		lettre == 'Z' ||
+		lettre == '-' ) {
+
+			isLettreValid = true;
+	}
+
+	return isLettreValid;
+}
+
 #endif // ALPHABET_H
