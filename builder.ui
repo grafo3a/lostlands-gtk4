@@ -232,7 +232,8 @@
         <!--==== BOUTON PREVIOUS ====-->
         <child>
           <object id="boutonPrevious" class="GtkButton">
-            <property name="label"> - </property>
+            <property name="label" translatable="yes"> &lt; </property>
+            <property name="name">PREV-BUTTON-LABEL</property>
             <layout>
               <property name="column">0</property>
               <property name="row">11</property>
@@ -244,7 +245,8 @@
         <!--==== BOUTON NEXT ====-->
         <child>
           <object id="boutonNext" class="GtkButton">
-            <property name="label"> + </property>
+            <property name="label" translatable="yes"> &gt; </property>
+            <property name="name">NEXT-BUTTON-LABEL</property>
             <layout>
               <property name="column">1</property>
               <property name="row">11</property>

@@ -38,6 +38,15 @@ button {
     margin: 10px;
 }
 
+#PREV-BUTTON-LABEL,
+#NEXT-BUTTON-LABEL {
+    color: blue;
+    margin: 10px;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    font-size: 20px;
+}
+
 window {
     background-color: bisque;
 }

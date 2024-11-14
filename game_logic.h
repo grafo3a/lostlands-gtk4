@@ -245,7 +245,7 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 		afficherNombreSuccess(successNumber);
 		
 		char messageSuccess[] = "";
-		sprintf(messageSuccess, "%s\nBravo! The word is %s", messagePresence, p_motSecret);
+		sprintf(messageSuccess, "%s\n=> Bravo! The word is %s", messagePresence, p_motSecret);
 		gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
 		gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
 		gtk_label_set_text(GTK_LABEL(p_messageLabel), messageSuccess);
@@ -262,7 +262,6 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 			gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
 			
 			char messageEchec[] = "";
-			printf("\n=> Length messageEchec: %d", strlen(messageEchec));
 			sprintf(messageEchec, "%d games reached\n=>You fail! The word was %s", maxGameNumber, p_motSecret);
 			gtk_label_set_text(GTK_LABEL(p_messageLabel), messageEchec);
 			isRoundComplete = true;
