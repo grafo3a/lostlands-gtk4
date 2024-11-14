@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "countries_dictionary.h"
-//#include "alphabet.h"
+#include "alphabet.h"
 
 
 // Les prototypes de fonction
@@ -110,16 +110,28 @@ void jouer() {
 	/* Quand le bouton play est cliqueh */
 
 	char lettreTapee = getLettreTapee();
-	int tailleSecret = strlen(p_motSecret);
-	jouerLettre(lettreTapee, p_motSecret, p_motMasqueh, tailleSecret);
-	gameNumber++;
+	//bool isLettreValide = isLettreTapeeValid(lettreTapee);
+	bool isLettreValide = true;
+	
+	if (isLettreValide) {
+		
+		int tailleSecret = strlen(p_motSecret);
+		jouerLettre(lettreTapee, p_motSecret, p_motMasqueh, tailleSecret);
+		gameNumber++;
+		
+		if ( gameNumber > maxGameNumber) {
+			gameNumber = 1;
+		}
+		
+		afficherNumeroGame(gameNumber);
+		afficherMotMasqueh(p_motMasqueh);
 
-	if ( gameNumber > maxGameNumber) {
-		gameNumber = 1;
+	} else {
+		gtk_label_set_text(GTK_LABEL(p_messageLabel), "Empty or not valid character typed!");
+		gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
+		gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
 	}
 	
-	afficherNumeroGame(gameNumber);
-	afficherMotMasqueh(p_motMasqueh);
 	disablePlayButton();
 	enableContinueButton();
 }
@@ -212,41 +224,6 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 		gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
 		gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
 
-		/* On verifie si motSecret = motMasqueh */
-		int difference = 1;
-		difference = strcmp(p_motSecret, p_motMasqueh);
-		
-		if (difference == 0) {
-			/* La fin d'un round en cas de succes. */
-
-			pointsNumber++;
-			successNumber = (pointsNumber * 100) / roundsNumber;
-
-			afficherNombrePoints(pointsNumber);
-			afficherNombreSuccess(successNumber);
-
-			char messageSuccess[] = "";
-			sprintf(messageSuccess, "%s\nBravo! The word is %s", messagePresence, p_motSecret);
-			gtk_label_set_text(GTK_LABEL(p_messageLabel), messageSuccess);
-			isRoundComplete = true;
-			
-		} else {
-			/* La fin d'un round en cas d'un caractere correct mais le mot devoileh incorrect */
-
-			messageAbsence[0] = lettreTapee;
-			gtk_label_set_text(GTK_LABEL(p_messageLabel), messageAbsence);
-			gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
-			gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
-
-			if (gameNumber == (maxGameNumber - 1)) {
-
-				char messageEchec[] = "";
-				sprintf(messageEchec, "%s but you fail.\nThe word was %s", messagePresence, p_motSecret);
-				gtk_label_set_text(GTK_LABEL(p_messageLabel), messageEchec);
-				isRoundComplete = true;
-			}
-		}
-		
 	} else {
 		// Si la lettre est absente du mot secret
 
@@ -254,17 +231,46 @@ void jouerLettre(char lettreTapee, char* p_motSecret, char* p_motMasqueh, int ta
 		gtk_label_set_text(GTK_LABEL(p_messageLabel), messageAbsence);
 		gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
 		gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
+	}
+
+	int difference = 1;
+	difference = strcmp(p_motSecret, p_motMasqueh);
+
+	if (difference == 0) {
+		/* La fin d'un round avec succes */
+		
+		pointsNumber++;
+		successNumber = (pointsNumber * 100) / roundsNumber;
+		
+		afficherNombrePoints(pointsNumber);
+		afficherNombreSuccess(successNumber);
+		
+		char messageSuccess[] = "";
+		sprintf(messageSuccess, "%s\nBravo! The word is %s", messagePresence, p_motSecret);
+		gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
+		gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
+		gtk_label_set_text(GTK_LABEL(p_messageLabel), messageSuccess);
+		isRoundComplete = true;
+
+	} else {
+		/* La fin d'un round avec echec */
 
 		if (gameNumber == (maxGameNumber - 1)) {
+			/* Si le game est le dernier */
+
+			gtk_label_set_text(GTK_LABEL(p_messageLabel), messageAbsence);
+			gtk_widget_remove_css_class(GTK_WIDGET(p_messageLabel), "texte-vert");
+			gtk_widget_add_css_class(GTK_WIDGET(p_messageLabel), "texte-rouge");
 			
 			char messageEchec[] = "";
-			sprintf(messageEchec, "%s\nOh, you fail! The word was %s", messageAbsence, p_motSecret);
+			printf("\n=> Length messageEchec: %d", strlen(messageEchec));
+			sprintf(messageEchec, "%d games reached\n=>You fail! The word was %s", maxGameNumber, p_motSecret);
 			gtk_label_set_text(GTK_LABEL(p_messageLabel), messageEchec);
 			isRoundComplete = true;
 		}
 	}
-	
-	// A la fin du round, on libere la memoire allouee par malloc
+
+	/* A la fin du round, on libere la memoire allouee par malloc */
 	if (isRoundComplete) {
 		free(p_masque);
 		free(p_motSecret);
@@ -327,15 +333,27 @@ void setNextButton(GObject* p_nextButton){
 	p_nextButton = p_nextButton;
 }
 
-
-//===========================================
 void setPreviousLetter(){
+
+	char currentLetter = getLettreTapee();
+	char prevLetter = getPreviousLetter(currentLetter);
+
+	// On convertit le char en chaine de caracteres et on utilise la chaine.
+    char chaine[] = "";
+    sprintf(chaine, "%c", prevLetter);
+	gtk_editable_set_text(GTK_EDITABLE (p_inputBox), chaine);
 }
 
 void setNextLetter(){
-}
-//=============================================
 
+	char currentLetter = getLettreTapee();
+	char nextLetter = getNextLetter(currentLetter);
+
+	// On convertit le char en chaine de caracteres et on utilise la chaine.
+    char chaine[] = "";
+    sprintf(chaine, "%c", nextLetter);
+	gtk_editable_set_text(GTK_EDITABLE (p_inputBox), chaine);
+}
 
 void enablePlayButton() {
 
