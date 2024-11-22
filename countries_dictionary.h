@@ -1,3 +1,6 @@
+#ifndef COUNTRIES_DICTIONARY_H
+#define COUNTRIES_DICTIONARY_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "utility_functions.h"
@@ -213,3 +216,5 @@ char* genererMotSecret(char* p_motSecret) {
     
 	return p_motSecret;
 }
+
+#endif // COUNTRIES_DICTIONARY_H

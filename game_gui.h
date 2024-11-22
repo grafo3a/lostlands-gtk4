@@ -1,3 +1,6 @@
+#ifndef GAME_GUI_H
+#define GAME_GUI_H
+
 #include "game_logic.h"
 
 static void activate (GtkApplication *app, gpointer user_data) {
@@ -65,3 +68,5 @@ static void activate (GtkApplication *app, gpointer user_data) {
 
   initialiserJeu();
 }
+
+#endif // GAME_GUI_H

@@ -1,3 +1,6 @@
+#ifndef GAME_LOGIC_H
+#define GAME_LOGIC_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -391,3 +394,5 @@ void continuer() {
 		initialiserJeu();
 	}
 }
+
+#endif // GAME_LOGIC_H

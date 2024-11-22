@@ -1,3 +1,6 @@
+#ifndef UTILITY_FUNCTIONS_H
+#define UTILITY_FUNCTIONS_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -53,3 +56,5 @@ char* convertirEnMajuscules(char* p_chaineCaracteres) {
 	
 	return p_chaineCaracteres;
 }
+
+#endif // UTILITY_FUNCTIONS_H
